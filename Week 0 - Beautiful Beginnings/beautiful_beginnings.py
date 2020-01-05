@@ -76,4 +76,5 @@ with open("beautiful.txt") as file1:
 
         # Post to Mastodon
         media = mastodon.media_post("imgs/" + filename)
-        mastodon.status_post(text1 + " " + text2 + " " + text3, media_ids=media)
+        status = "(" + counter + ") " + text1 + " " + text2 + " " + text3
+        mastodon.status_post(status, media_ids=media)
