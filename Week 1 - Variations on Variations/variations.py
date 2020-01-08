@@ -133,4 +133,7 @@ filename = str(counter) + ".png"
 image.save('imgs/' + filename)
 
 # Post to Mastodon
-    
+
+media  = mastodon.media_post("imgs/" + filename)
+status = "Variation No. " + str(counter)
+mastodon.status_post(status, media_ids=media)
