@@ -39,22 +39,29 @@ def get_intersections(x0, y0, r0, x1, y1, r1):
         return [(x3, y3), (x4, y4)]
 
 def find_center(points, radius):
-    # Three points should suffice to find center.
-    ps = points[0:3]
-
+    ps = points[0:2]
     i1 = get_intersections(ps[0][0], ps[0][1], radius, ps[1][0], ps[1][1], radius)
-    i2 = get_intersections(ps[1][0], ps[1][1], radius, ps[2][0], ps[2][1], radius)
 
-    print("i1:", i1)
-    print("i2:", i2)
-    close = [(p1,p2) for p1 in i1 for p2 in i2 if distance(p1,p2) < 0.25 * radius]
-    print("close",close)
-    assert(len(close) == 1)
+    assert(i1 is not None)
+    assert(len(i1) == 2)
 
-    center_x = (close[0][0][0] + close[0][1][0]) / 2
-    center_y = (close[0][0][1] + close[0][1][1]) / 2
+    xs = list(map((lambda tp:tp[0]), ps))
+    ys = list(map((lambda tp:tp[1]), ps))
 
-    return (center_x, center_y)
+    print(xs)
+
+    x_avg = sum(xs) / len(xs)
+    y_avg = sum(ys) / len(ys)
+
+    d1 = distance(i1[0], (x_avg,y_avg))
+    d2 = distance(i1[1], (x_avg,y_avg))
+
+    if d1 < d2:
+        center = i1[0]
+    else:
+        center = i1[1]
+
+    return center
 
 # Set up Mastodon
 mastodon = Mastodon(
