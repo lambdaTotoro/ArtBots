@@ -11,9 +11,6 @@ def distance(p1,p2):
 
 # Circle Intersection we'll need later.
 def get_intersections(x0, y0, r0, x1, y1, r1):
-    # circle 1: (x0, y0), radius r0
-    # circle 2: (x1, y1), radius r1
-
     d = distance((x1,y1), (x0,y0))
 
     # non intersecting
@@ -38,17 +35,14 @@ def get_intersections(x0, y0, r0, x1, y1, r1):
 
         return [(x3, y3), (x4, y4)]
 
-def find_center(points, radius):
-    ps = points[0:2]
-    i1 = get_intersections(ps[0][0], ps[0][1], radius, ps[1][0], ps[1][1], radius)
+def find_center(p1, p2, ps, radius):
+    i1 = get_intersections(p1[0], p1[1], radius, p2[0], p2[1], radius)
 
     assert(i1 is not None)
     assert(len(i1) == 2)
 
     xs = list(map((lambda tp:tp[0]), ps))
     ys = list(map((lambda tp:tp[1]), ps))
-
-    print(xs)
 
     x_avg = sum(xs) / len(xs)
     y_avg = sum(ys) / len(ys)
@@ -71,7 +65,7 @@ mastodon = Mastodon(
 
 # Calculate Polygon Coordinates
 
-n = 3 + random.randint(0,7)
+n = 3 + random.randint(2,6)
 gons = []
 
 for m in range(n,2,-1):
@@ -79,12 +73,12 @@ for m in range(n,2,-1):
     gon = []
 
     if m == n:
-        radius = 240
+        radius = 475
         theta  = math.radians(random.randint(0,360))
         
         for k in range(0,m):
-            x = 250 + (radius * math.cos(2 * math.pi * k/m + theta))
-            y = 250 + (radius * math.sin(2 * math.pi * k/m + theta)) 
+            x = 500 + (radius * math.cos(2 * math.pi * k/m + theta))
+            y = 500 + (radius * math.sin(2 * math.pi * k/m + theta)) 
             gon.append((round(x),round(y)))
     else:
         oldgon = gons[-1]
@@ -95,26 +89,38 @@ for m in range(n,2,-1):
         length = distance(p1,p2)
         radius = length / (2 * math.sin(math.pi / m))
 
-        center = find_center(oldgon,radius)
-        
+        center = find_center(p1,p2,oldgon,radius)
+
+        champ = float('inf')
+        theta = 0
+        for w in range(0,3600):
+            a = center[0] + (radius * math.cos(math.radians(w/10.0)))
+            b = center[1] + (radius * math.sin(math.radians(w/10.0)))
+            if distance((a,b), p1) < champ:
+                theta = math.radians(w/10.0)
+                champ = distance((a,b), p1)
+
         for k in range(0,m):
-            x = center[0] + (radius * math.cos(2 * math.pi * k/m))
-            y = center[1] + (radius * math.sin(2 * math.pi * k/m)) 
+            x = center[0] + (radius * math.cos(2 * math.pi * k/m + theta))
+            y = center[1] + (radius * math.sin(2 * math.pi * k/m + theta)) 
             gon.append((round(x),round(y)))
 
     gons.append(gon)
-    print("Creating", str(m) + "-gon:", gon)
 
 # Create Image
 
-colours = ["orange", "pink", "red", "blue", "yellow", "green", "purple", "black"]
+colours = ["gray", "black", "red", "maroon", "olive", "green", "teal", "blue", "navy", "fuchsia", "purple", "deeppink", "darkorange", "orangered", "gold", "indigo", "springgreen", "lightseagreen"]
 
-image = Image.new(mode = "RGB", size = (500,500), color = (255,255,255))
+image = Image.new(mode = "RGB", size = (1000,1000), color = (255,255,255))
 draw  = ImageDraw.Draw(image)
 
+used = []
 for gon in gons:
-    if len(gon) >= 2:
-        draw.polygon(gon, fill = random.choice(colours))
+    c = random.choice(colours)
+    while c in used:
+        c = random.choice(colours)
+    used.append(c)
+    draw.polygon(gon, fill = c)
 
 # Save Image
 
