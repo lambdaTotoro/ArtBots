@@ -130,3 +130,6 @@ dmypy.json
 
 # Dont commit secrets
 *.secret
+
+# Or image folder
+imgs/
