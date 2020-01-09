@@ -7,4 +7,5 @@ These are hosted at [uberspace](https://uberspace.de) and post to
 
 ## Running Bots
 
-  - Week 0: [Beautiful Beginnings](https://botsin.space/@beautiful_beginnings), posts every 6 hours.
+  - Week 0: [Beautiful Beginnings](https://botsin.space/@beautiful_beginnings), welcomes new Wikipedia articles, posts every 6 hours.
+  - Week 1: [Variations on Variations](https://botsin.space/@variations_on_variations), inspired by Max Bill's "Variations" series, posts every 8 hours.
