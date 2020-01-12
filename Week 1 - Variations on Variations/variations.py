@@ -65,7 +65,7 @@ def variation_by_trace(trace):
 	n = int(elems.pop(0))
 	valid = valid and (n < 9) and (n > 4)
 
-	resolution = int(elems.pop)
+	resolution = int(elems.pop())
 	valid = valid and (resolution >= 100)
 
 	winkel = int(elems.pop(0))
