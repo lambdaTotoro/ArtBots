@@ -59,7 +59,33 @@ def find_center(p1, p2, ps, radius):
 	return center
 
 def variation_by_trace(trace):
+	valid = True
 	elems = trace.split("-")
+
+	n = int(elems.pop(0))
+	valid = valid and (n < 9) and (n > 4)
+
+	resolution = int(elems.pop)
+	valid = valid and (resolution >= 100)
+
+	winkel = int(elems.pop(0))
+	valid = valid and (winkel >= 0) and (winkel <= 360)
+
+	indices = []
+	for i in range(0,n-3):
+		indices.append(int(elems.pop(0)))
+
+	colours = []
+	for j in range(0,n-2):
+		colours.append(int(elems.pop(0)))
+
+	valid = valid and (len(elems) == 0)
+
+	if valid:
+		return variation(px = resolution, max_poly = n, deg = winkel,
+                                      inds = indices, cols = colours)
+	else:
+		return None
 
 def variation(px = None, max_poly = None, deg = None, 
                              inds = None, cols = None):
