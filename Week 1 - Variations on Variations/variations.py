@@ -176,4 +176,4 @@ def variation(px = None, max_poly = None, deg = None,
 	trace = trace + str(sz)
 
 	print("Generated " + filename + " successfully! Trace:", trace)
-	return (filename, trace)
+	return (filename, trace, counter)

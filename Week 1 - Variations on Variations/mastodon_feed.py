@@ -9,7 +9,7 @@ mastodon = Mastodon(
 )
 
 # Generate with default parameters:
-(filename,trace) = variations.variation()
+(filename,trace,counter) = variations.variation()
 
 # Post to Mastodon
 media  = mastodon.media_post("imgs/" + filename)
