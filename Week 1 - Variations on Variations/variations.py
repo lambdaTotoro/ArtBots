@@ -174,6 +174,7 @@ def variation(px = None, max_poly = None, deg = None,
 	# Assign colours to polygons
 	used   = []
 	colour = ""
+	j = 0
 	for gon in gons:
 		if cols is not None:
 			colour = colours[cols[j]]
