@@ -176,7 +176,7 @@ def variation(px = None, max_poly = None, deg = None,
 	colour = ""
 	for gon in gons:
 		if cols is not None:
-			colour = colours[j]
+			colour = colours[cols[j]]
 			used.append(colour)
 			j += 1
 			trace = trace + str(j) + "-"
