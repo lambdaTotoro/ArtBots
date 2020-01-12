@@ -47,3 +47,5 @@ for notification in mentions:
 	else:
 		status = "Sorry, I don't know how to reply to that!"
 		mastodon.status_post(status, in_reply_to_id=replid)
+
+	mastodon.notifications_dismiss(not_id)
