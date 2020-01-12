@@ -15,9 +15,9 @@ mentions = list(filter(lambda n: n["type"] == "mention", notifs))
 
 for notification in mentions:
 	not_id = notification["id"]
-  origin = notification["account"]
+	origin = notification["account"]
 	talker = notification["account"]["acct"]
-  toot   = notification["status"]["content"]
+	toot   = notification["status"]["content"]
 	replid = notification["status"]["id"]
 	tr     = re.findall("Trace: (\d-(?:\d{1,3})-(?:\d-)+\d*)", toot)
 
