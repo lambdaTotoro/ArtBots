@@ -27,6 +27,7 @@ elif sys.argv[1] == "post":
 	
 	media = mastodon.media_post("./days/" + today + "/" + filename)
 	mastodon.status_post("Here is a new perspective!", media_ids=media)
+	os.remove("./days/" + today + "/" + filename)
 	
 elif sys.argv[1] == "resolve":
 	# Post to Mastodon
