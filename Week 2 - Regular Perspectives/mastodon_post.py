@@ -14,7 +14,7 @@ mastodon = Mastodon(
 )
 
 assert(len(sys.argv) == 2)
-today = str(datetime.date.today)
+today = str(datetime.date.today())
 
 if sys.argv[1] == "generate":
 	regular_perspectives.approximate()
