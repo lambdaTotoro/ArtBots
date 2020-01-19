@@ -25,13 +25,13 @@ elif sys.argv[1] == "post":
 		files = os.listdir("./days/" + today)
 		filename =  random.choice(files)
 	
-	media  = mastodon.media_post("./days/" + today + "/" + filename + ".png")
-	mastodon.status_post("Here is a new perspective!", media_ids=[media])
+	media = mastodon.media_post("./days/" + today + "/" + filename)
+	mastodon.status_post("Here is a new perspective!", media_ids=media)
 	
 elif sys.argv[1] == "resolve":
 	# Post to Mastodon
 	media1  = mastodon.media_post("./days/" + today + "/target.png")
-	media1  = mastodon.media_post("./days/" + today + "/approximation.png")
+	media2  = mastodon.media_post("./days/" + today + "/approximation.png")
 	status1 = "All images today where based on this picture (left).\n"
 	status2 = "The 'best' approximation was this (right)."
 	mastodon.status_post(status, media_ids=[media1,media2])
