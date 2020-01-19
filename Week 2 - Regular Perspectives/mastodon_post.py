@@ -20,7 +20,7 @@ if sys.argv[1] == "generate":
 	
 elif sys.argv[1] == "post":
 	filename = None
-	while (filename is None) or (filename is "target.png") or (filename is "approximation.png"):
+	while (filename is None) or (filename == "target.png") or (filename == "approximation.png"):
 		files = os.listdir("./days/" + today)
 		filename =  random.choice(files)
 	
@@ -34,3 +34,5 @@ elif sys.argv[1] == "resolve":
 	status1 = "All images today where based on this picture (left).\n"
 	status2 = "The 'best' approximation was this (right)."
 	mastodon.status_post(status, media_ids=[media1,media2])
+else:
+	print("[Error] Unknown argument:", sys.argv[1])

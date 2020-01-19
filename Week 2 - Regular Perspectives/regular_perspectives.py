@@ -81,7 +81,8 @@ def approximate(img = None, npoints = 6):
 		mse = metrics.mean_squared_error(target,ref)
 		counter += 1
 		if mse < champion[1]:
-			champion[0].save("./days/" + today + "/champion-" + str(counter) + ".png")
+			if champion[1] != float("inf"):
+				champion[0].save("./days/" + today + "/champion-" + str(counter) + ".png")
 			champion = (image,mse)
 			print("New Champion!", counter, champion[1])
 	
