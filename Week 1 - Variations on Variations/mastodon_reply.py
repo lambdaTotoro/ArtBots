@@ -19,7 +19,7 @@ for notification in mentions:
 	talker = "@" + notification["account"]["acct"]
 	toot   = notification["status"]["content"]
 	replid = notification["status"]["id"]
-	tr     = re.findall("Trace: (\d-(?:\d{1,3})-(?:\d-)+\d*)", toot)
+	tr     = re.findall("Trace: (\d-(?:\d{1,3})-(?:\d+-)+\d*)", toot)
 
 	tr_exists = False
 	if len(tr) >= 1:
