@@ -59,25 +59,34 @@ def find_center(p1, p2, ps, radius):
 	return center
 
 def variation_by_trace(trace):
-	valid = True
+	
 	elems = trace.split("-")
+	valid = True
+	print("elems =", elems)
 
 	n = int(elems.pop(0))
 	valid = valid and (n < 9) and (n > 4)
+	valid = valid and (len(elems) == 3 + (n-3) + (n-2))
+	
+	# TODO: This should probably be a try-catch or something.
+	
+	if valid:
+		resolution = int(elems.pop())
+		valid = valid and (resolution >= 100) and (resolution <= 1280)
 
-	resolution = int(elems.pop())
-	valid = valid and (resolution >= 100) and (resolution <= 1280)
+	if valid:
+		winkel = int(elems.pop(0))
+		valid = valid and (winkel >= 0) and (winkel <= 360)
 
-	winkel = int(elems.pop(0))
-	valid = valid and (winkel >= 0) and (winkel <= 360)
+	if valid:
+		indices = []
+		for i in range(0,n-3):
+			indices.append(int(elems.pop(0)))
 
-	indices = []
-	for i in range(0,n-3):
-		indices.append(int(elems.pop(0)))
-
-	colours = []
-	for j in range(0,n-2):
-		colours.append(int(elems.pop(0)))
+	if valid: 
+		colours = []
+		for j in range(0,n-2):
+			colours.append(int(elems.pop(0)))
 
 	valid = valid and (len(elems) == 0)
 
@@ -202,5 +211,5 @@ def variation(px = None, max_poly = None, deg = None,
 
 	trace = trace + str(sz)
 
-	print("Generated " + filename + " successfully! Trace:", trace)
+	#print("Generated " + filename + " successfully! Trace:", trace)
 	return (filename, trace, counter)
