@@ -1,7 +1,5 @@
-import datetime
 import random
-import os 
-import sys
+import os
 
 from mastodon import Mastodon
 
@@ -14,7 +12,7 @@ mastodon = Mastodon(
 )
 
 fn = None
-fn = regular_perspectives.approximate()
+fn = linear_furcation.approximate()
 
 b1 = "A new linear furcation has arrived:"
 b2 = "I approximated this for y'all:"
@@ -24,7 +22,6 @@ b5 = "My algorithms have produced this here art:"
 
 blurbs = [b1,b2,b3,b4,b5]
 	
-if (os.path.isfile("./imgs/" + fn))
-	
+if os.path.isfile("./imgs/" + fn):
 	media = mastodon.media_post("./imgs/" + fn)
 	mastodon.status_post(random.choice(blurbs), media_ids=media)
