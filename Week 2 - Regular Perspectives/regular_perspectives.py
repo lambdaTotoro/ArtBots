@@ -84,7 +84,5 @@ def approximate(img = None, npoints = 6):
 			if champion[1] != float("inf"):
 				champion[0].save("./days/" + today + "/champion-" + str(counter) + ".png")
 			champion = (image,mse)
-			print("New Champion!", counter, champion[1])
 	
-	print("Final champion:", counter, champion[1])
 	champion[0].save("./days/" + today + "/approximation.png")
