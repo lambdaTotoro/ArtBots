@@ -154,6 +154,3 @@ def mountain_range(sz = 1200, n = None):
 	image.save('imgs/' + filename)
 	
 	return (filename, counter)
-	
-for _ in range(0,100):
-	mountain_range()
